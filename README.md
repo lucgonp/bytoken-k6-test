@@ -43,7 +43,7 @@ Este projeto visa testar a **resiliência e escalabilidade** da autenticação n
 ### API Testada
 
 ```
-🚀 ByToken Auth → https://hom.bytoken.com.br/login
+🚀 ByToken Auth → https://<BYTOKEN_HOST>/login
 ```
 
 ---
