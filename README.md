@@ -115,32 +115,33 @@ k6 run tests/spike-test.js
 
 ---
 
-### 📊 Resultado do Spike Test — 23/02/2026
+### 📊 Case de Performance: Stress & Spike Test (Autenticação)
 
-Teste focado no endpoint de autenticação com rampa agressiva de **0 a 200 VUs em 10 segundos**.
+#### 1. Cenário e Objetivo
+O objetivo deste teste foi identificar o comportamento do serviço de autenticação sob um regime de carga agressiva (**Spike Test**). Simulamos a entrada súbita de **200 usuários simultâneos** em um intervalo de **10 segundos**, visando validar a elasticidade da infraestrutura e o tempo de resposta do endpoint de login.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│               SPIKE TEST — AUTENTICAÇÃO                     │
-├─────────────────────────┬───────────────────────────────────┤
-│ Total de requests       │ 402                               │
-│ Total de iterações      │ 201                               │
-│ VUs máximos             │ 200                               │
-│ Requests/segundo        │ 5.04 req/s                        │
-│ Dados transferidos      │ 12.4 MB recebidos                 │
-├─────────────────────────┼───────────────────────────────────┤
-│ Taxa sucesso login      │ 73.6% (148 / 201)                 │
-│ Taxa erro HTTP          │ 0.00%  (0 / 402)                  │
-│ Tempo médio resposta    │ 939ms                             │
-│ p50 (mediana)           │ 1.01s                             │
-│ p90                     │ 1.18s                             │
-│ p95                     │ 1.24s                             │
-├─────────────────────────┴───────────────────────────────────┤
-│ ❌ Thresholds de p95 (1.0s) ULTRA PASSADOS                  │
-│ ⚠️  Degradação severa com 200 VUs simultâneos (pico)        │
-│ ✅ Validação de status 200 mantida                          │
-└─────────────────────────────────────────────────────────────┘
-```
+#### 2. Resultados Obtidos
+Abaixo, apresento a síntese do comportamento do sistema durante o pico de estresse:
+
+| Métrica | Resultado | Status |
+|---------|-----------|--------|
+| Vazão (Throughput) | 5.04 req/s | ⚠️ Abaixo do esperado |
+| Tempo Médio de Resposta | 939ms | ✅ Dentro do limite |
+| p95 (Latência Crítica) | 1.24s | ❌ Falha (SLA > 1.0s) |
+| Taxa de Sucesso (Negócio) | 73.6% | ❌ Crítico |
+| Taxa de Erro (HTTP) | 0.00% | ✅ Estável |
+
+#### 3. Análise Técnica e Conclusões (Post-Mortem)
+Embora a camada de rede e o servidor tenham se mantido estáveis (0% de erro HTTP), o teste revelou um gargalo de processamento na camada de aplicação ou banco de dados.
+
+- **Divergência de Sucesso**: A taxa de 73.6% de sucesso no login, mesmo com Status 200, indica que o sistema sofreu de timeouts internos. O servidor aceitou a conexão, mas não conseguiu processar a regra de negócio (geração de Token/Sessão) a tempo para todos os usuários.
+- **Degradação de Latência**: O p95 de 1.24s confirma que o sistema começou a enfileirar requisições sob alta concorrência, ultrapassando o limite aceitável de 1 segundo estabelecido para o produto.
+
+#### 4. Plano de Mitigação Proposto
+Como ação corretiva, foram sugeridas as seguintes frentes:
+- **Otimização de Pool de Conexões**: Revisar o limite de conexões simultâneas do banco de dados.
+- **Escalabilidade Horizontal**: Ajustar as regras de Auto-scaling para responder a picos de tráfego em janelas inferiores a 10 segundos.
+- **Refatoração de Hash**: Avaliar o custo computacional do algoritmo de criptografia de senha durante processos massivos.
 
 ---
 
