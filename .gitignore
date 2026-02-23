@@ -1,0 +1,14 @@
+# k6 dependencies
+node_modules/
+
+# Environment variables (Sensitive)
+config/environment.env
+.env
+
+# Reports and logs
+reports/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

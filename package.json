@@ -1,0 +1,23 @@
+{
+  "name": "bytoken-k6-test",
+  "version": "1.0.0",
+  "description": "k6 Performance Testing Project for ByToken",
+  "main": "index.js",
+  "scripts": {
+    "test:smoke": "k6 run tests/smoke-test.js",
+    "test:load": "k6 run tests/load-test.js",
+    "test:stress": "k6 run tests/stress-test.js",
+    "test:spike": "k6 run tests/spike-test.js",
+    "test:report": "k6 run tests/smoke-test.js --out json=reports/smoke-test-result.json",
+    "clean:reports": "rmdir /s /q reports && mkdir reports"
+  },
+  "keywords": [
+    "k6",
+    "performance",
+    "testing",
+    "bytoken"
+  ],
+  "author": "Tulio",
+  "license": "MIT",
+  "devDependencies": {}
+}
