@@ -1,0 +1,158 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+     execution: local
+        script: tests/load-test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 10 max VUs, 45s max duration (incl. graceful stop):
+              * default: 10 looping VUs for 15s (gracefulStop: 30s)
+
+
+running (01.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [   7% ] 10 VUs  01.0s/15s
+
+running (02.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  13% ] 10 VUs  02.0s/15s
+
+running (03.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  20% ] 10 VUs  03.0s/15s
+
+running (04.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  27% ] 10 VUs  04.0s/15s
+
+running (05.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  33% ] 10 VUs  05.0s/15s
+
+running (06.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  40% ] 10 VUs  06.0s/15s
+
+running (07.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  47% ] 10 VUs  07.0s/15s
+
+running (08.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  53% ] 10 VUs  08.0s/15s
+
+running (09.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  60% ] 10 VUs  09.0s/15s
+
+running (10.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  67% ] 10 VUs  10.0s/15s
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user2@example.com | Status: 200" source=console
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user2@example.com | Status: 200" source=console
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user2@example.com | Status: 200" source=console
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user2@example.com | Status: 200" source=console
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+
+running (11.0s), 10/10 VUs, 0 complete and 0 interrupted iterations
+default   [  73% ] 10 VUs  11.0s/15s
+time="2026-02-23T15:31:15-03:00" level=error msg="❌ Falha Crítica: test.user2@example.com | Status: 200" source=console
+
+running (12.0s), 10/10 VUs, 1 complete and 0 interrupted iterations
+default   [  80% ] 10 VUs  12.0s/15s
+
+running (13.0s), 10/10 VUs, 6 complete and 0 interrupted iterations
+default   [  87% ] 10 VUs  13.0s/15s
+
+running (14.0s), 10/10 VUs, 7 complete and 0 interrupted iterations
+default   [  93% ] 10 VUs  14.0s/15s
+
+running (15.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default   [ 100% ] 10 VUs  15.0s/15s
+
+running (16.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+running (17.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+running (18.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+running (19.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+running (20.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+time="2026-02-23T15:31:24-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+time="2026-02-23T15:31:24-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+
+running (21.0s), 10/10 VUs, 10 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+time="2026-02-23T15:31:25-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+
+running (22.0s), 09/10 VUs, 11 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+time="2026-02-23T15:31:26-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+time="2026-02-23T15:31:27-03:00" level=error msg="❌ Falha Crítica: test.user2@example.com | Status: 200" source=console
+
+running (23.0s), 07/10 VUs, 13 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+time="2026-02-23T15:31:27-03:00" level=error msg="❌ Falha Crítica: test.user1@example.com | Status: 200" source=console
+
+running (24.0s), 06/10 VUs, 14 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+running (25.0s), 04/10 VUs, 16 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+running (26.0s), 01/10 VUs, 19 complete and 0 interrupted iterations
+default ↓ [ 100% ] 10 VUs  15s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✗ 'avg<400' avg=3.36s
+    ✗ 'p(95)<800' p(95)=6.3s
+
+    http_req_failed
+    ✓ 'rate==0' rate=0.00%
+
+    login_success_rate
+    ✗ 'rate>0.99' rate=30.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 80     3.040884/s
+    checks_succeeded...: 82.50% 66 out of 80
+    checks_failed......: 17.50% 14 out of 80
+
+    ✓ status is 200 or 302
+    ✗ redirected to dashboard
+      ↳  30% — ✓ 6 / ✗ 14
+    ✓ token is present in response
+
+    CUSTOM
+    login_duration.................: avg=2.29s min=1.04s med=2.19s  max=4.53s  p(90)=3.35s  p(95)=3.86s 
+    login_success_rate.............: 30.00% 6 out of 20
+
+    HTTP
+    http_req_duration..............: avg=3.36s min=1.04s med=3.23s  max=6.93s  p(90)=5.5s   p(95)=6.3s  
+      { expected_response:true }...: avg=3.36s min=1.04s med=3.23s  max=6.93s  p(90)=5.5s   p(95)=6.3s  
+    http_req_failed................: 0.00%  0 out of 60
+    http_reqs......................: 60     2.280663/s
+
+    EXECUTION
+    iteration_duration.............: avg=12.1s min=9.91s med=12.04s max=14.49s p(90)=14.45s p(95)=14.47s
+    iterations.....................: 20     0.760221/s
+    vus............................: 1      min=1       max=10
+    vus_max........................: 10     min=10      max=10
+
+    NETWORK
+    data_received..................: 2.5 MB 95 kB/s
+    data_sent......................: 41 kB  1.6 kB/s
+
+
+
+
+running (26.3s), 00/10 VUs, 20 complete and 0 interrupted iterations
+default ✓ [ 100% ] 10 VUs  15s
+time="2026-02-23T15:31:30-03:00" level=error msg="thresholds on metrics 'http_req_duration, login_success_rate' have been crossed"
