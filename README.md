@@ -146,6 +146,31 @@ Como ação corretiva, foram sugeridas as seguintes frentes:
 
 ---
 
+### 📈 Case de Performance: Load Test (Estabilidade de Autenticação)
+
+#### 1. Cenário e Objetivo
+Simulação de um cenário de carga constante para validar a estabilidade do sistema sob demanda típica. Diferente do Spike Test, este cenário utiliza **Think Time** (1-3s) e uma rampa gradual para atingir o estado estável.
+
+#### 2. Resultados Obtidos
+Métricas consolidadas durante a janela de estabilidade:
+
+| Métrica | Resultado | Critério de Aceite | Status |
+|---------|-----------|--------------------|--------|
+| **Throughput** | 0.76 iter/s | > 2.0 req/s | ⚠️ Abaixo do esperado |
+| **Tempo Médio** | 3.36s | < 400ms | ❌ Falha Crítica |
+| **p95 (Latência)** | 6.30s | < 800ms | ❌ Falha (SLA) |
+| **Sucesso (Login)** | 30.0% | > 99% | ❌ Crítico |
+| **Erro HTTP** | 0.00% | < 1% | ✅ Estável |
+
+#### 3. Diagnóstico do Especialista
+O teste de carga confirmou que o sistema apresenta alta latência mesmo sem um pico agressivo (Spike). A taxa de sucesso de 30% indica que, sob carga constante, o sistema sofre de **contenção de recursos**.
+- **Latência Elevada**: A média de 3.36s é quase 10x superior ao SLA de 400ms.
+- **Falha de Negócio**: Embora não ocorram erros 5xx (Erro HTTP 0%), o sistema falha em processar o login (redirecionamento para o dashboard), indicando possíveis timeouts em microserviços internos ou deadlocks no banco de dados.
+
+---
+
+---
+
 ## 🔒 Segurança
 
 > ⚠️ **IMPORTANTE**: As credenciais reais e URLs completas de infraestrutura nunca são versionadas.
