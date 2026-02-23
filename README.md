@@ -123,17 +123,18 @@ O objetivo deste teste foi identificar o comportamento do serviço de autentica�
 #### 2. Resultados Obtidos
 Abaixo, apresento a síntese do comportamento do sistema durante o pico de estresse:
 
-| Métrica | Resultado | Status |
-|---------|-----------|--------|
-| Vazão (Throughput) | 5.04 req/s | ⚠️ Abaixo do esperado |
-| Tempo Médio de Resposta | 939ms | ✅ Dentro do limite |
-| p95 (Latência Crítica) | 1.24s | ❌ Falha (SLA > 1.0s) |
-| Taxa de Sucesso (Negócio) | 73.6% | ❌ Crítico |
-| Taxa de Erro (HTTP) | 0.00% | ✅ Estável |
+| Métrica | Resultado | Critério de Aceite | Status |
+|---------|-----------|--------------------|--------|
+| **Vazão (Throughput)** | 5.04 req/s | > 10.0 req/s | ⚠️ Abaixo do esperado |
+| **Tempo Médio** | 939ms | < 800ms | ⚠️ Alerta de Degradacão |
+| **p95 (Latência)** | 1.24s | < 1.0s | ❌ Falha (SLA) |
+| **Sucesso (Login)** | 73.6% | > 95% | ❌ Crítico |
+| **Erro HTTP** | 0.00% | < 2% | ✅ Estável |
 
 #### 3. Análise Técnica e Conclusões (Post-Mortem)
 Embora a camada de rede e o servidor tenham se mantido estáveis (0% de erro HTTP), o teste revelou um gargalo de processamento na camada de aplicação ou banco de dados.
 
+- **Vazão Insuficiente (Throughput)**: A marca de 5.04 req/s ficou significativamente abaixo do critério de aceite (> 10 req/s), evidenciando que o sistema não consegue sustentar o processamento contínuo sob a rampa de 200 VUs distribuída.
 - **Divergência de Sucesso**: A taxa de 73.6% de sucesso no login, mesmo com Status 200, indica que o sistema sofreu de timeouts internos. O servidor aceitou a conexão, mas não conseguiu processar a regra de negócio (geração de Token/Sessão) a tempo para todos os usuários.
 - **Degradação de Latência**: O p95 de 1.24s confirma que o sistema começou a enfileirar requisições sob alta concorrência, ultrapassando o limite aceitável de 1 segundo estabelecido para o produto.
 
